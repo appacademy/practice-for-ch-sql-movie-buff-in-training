@@ -1,4 +1,4 @@
-# Active Record Warmup: Movie Buff in Training!
+# Active Record Warmup: Movie Buff In Training!
 
 This homework is a chance to dip your toes into Active Record and explore the
 data before you have to handle more complicated queries tomorrow.

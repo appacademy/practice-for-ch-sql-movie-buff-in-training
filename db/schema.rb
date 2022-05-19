@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_023510) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_05_16_020625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actors", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_actors_on_name"
   end
 
   create_table "castings", force: :cascade do |t|
-    t.bigint "movie_id", null: false
     t.bigint "actor_id", null: false
+    t.bigint "movie_id", null: false
     t.integer "ord", null: false
-    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.index ["actor_id"], name: "index_castings_on_actor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id", "movie_id"], name: "index_castings_on_actor_id_and_movie_id", unique: true
     t.index ["movie_id"], name: "index_castings_on_movie_id"
   end
 
@@ -37,11 +37,13 @@ ActiveRecord::Schema.define(version: 2021_12_01_023510) do
     t.float "score", null: false
     t.integer "votes", null: false
     t.bigint "director_id", null: false
-    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["director_id"], name: "index_movies_on_director_id"
     t.index ["title"], name: "index_movies_on_title"
-    t.index ["yr"], name: "index_movies_on_yr"
   end
 
+  add_foreign_key "castings", "actors"
+  add_foreign_key "castings", "movies"
+  add_foreign_key "movies", "actors", column: "director_id"
 end

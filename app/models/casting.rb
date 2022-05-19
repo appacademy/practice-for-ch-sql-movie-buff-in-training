@@ -10,6 +10,8 @@
 #  updated_at :datetime         not null
 #
 class Casting < ApplicationRecord
+  validates :ord, presence: true
+  
   belongs_to :actor
   # shorthand for:
   # belongs_to :actor,

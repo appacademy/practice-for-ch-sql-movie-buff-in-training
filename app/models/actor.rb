@@ -8,12 +8,16 @@
 #  updated_at :datetime         not null
 #
 class Actor < ApplicationRecord
-  has_many :castings
+  validates :name, presence: true
+
+  has_many :castings,
+    dependent: :destroy
   # shorthand for:
   # has_many :castings,
   # class_name: 'Casting',
   # foreign_key: :actor_id,
-  # primary_key: :id
+  # primary_key: :id,
+  # dependent: :destroy
 
   has_many :movies, through: :castings
   # shorthand for:
@@ -27,6 +31,6 @@ class Actor < ApplicationRecord
   # shorthand for:
   # has_many :directed_movies,
   # foreign_key: :director_id,
-  # class_name: "Movie",
+  # class_name: 'Movie',
   # primary_key: :id
 end
