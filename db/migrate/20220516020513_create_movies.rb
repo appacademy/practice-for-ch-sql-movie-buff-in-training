@@ -5,7 +5,7 @@ class CreateMovies < ActiveRecord::Migration[7.0]
       t.integer :yr, null: false
       t.float :score, null: false
       t.integer :votes, null: false
-      t.references :director, null: false, foreign_key: { to_table: :actors }
+      t.references :director, foreign_key: { to_table: :actors }
 
       t.timestamps
     end

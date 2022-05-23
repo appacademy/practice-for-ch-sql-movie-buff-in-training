@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_020625) do
     t.integer "yr", null: false
     t.float "score", null: false
     t.integer "votes", null: false
-    t.bigint "director_id", null: false
+    t.bigint "director_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["director_id"], name: "index_movies_on_director_id"

@@ -7,7 +7,7 @@
 #  yr          :integer          not null
 #  score       :float            not null
 #  votes       :integer          not null
-#  director_id :bigint           not null
+#  director_id :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
@@ -22,8 +22,7 @@ class Movie < ApplicationRecord
   # foreign_key: :director_id,
   # primary_key: :id
 
-  has_many :castings,
-    dependent: :destroy
+  has_many :castings, dependent: :destroy
   # shorthand for:
   # has_many :castings,
   # class_name: 'Casting',
